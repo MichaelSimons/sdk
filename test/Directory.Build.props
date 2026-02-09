@@ -14,14 +14,31 @@
     <!-- NU5125 The licenseUrl element is being replaced by the license element. -->
     <!-- NU5123 Don't warn about long filenames in packages, we bundle test assets that have long paths
          (ie HelloWorldWithSubDirs) -->
-    <NoWarn>$(NoWarn);NU5125;NU5123</NoWarn>
+    <!-- xUnit1051: Suppress CancellationToken suggestions - adopting Xunit.TestContext.Current.CancellationToken
+         throughout the codebase is a separate follow-up task (https://github.com/dotnet/sdk/issues/52914) -->
+    <NoWarn>$(NoWarn);NU5125;NU5123;xUnit1051</NoWarn>
 
-    <GenerateProgramFile>false</GenerateProgramFile>
+    <!-- Disable arcade's explicit MTP 2.x package references. The repo's dependency flow
+         has MTP at 2.x which is incompatible with xunit.v3's bundled MTP 1.x runner.
+         Let xunit.v3 use its own MTP 1.x dependency instead. -->
+    <UseMicrosoftTestingPlatformRunner>false</UseMicrosoftTestingPlatformRunner>
 
     <DebugType>embedded</DebugType>
 
     <!-- Don't generate separate symbol packages for the test packages -->
     <IncludeSymbols>false</IncludeSymbols>
   </PropertyGroup>
+
+  <!-- Exclude xUnit v2 compile/runtime assemblies that conflict with xUnit v3 types
+       (e.g. FactAttribute, TheoryAttribute exist in both xunit.extensibility.core and xunit.v3.core).
+       Upstream packages from dotnet/templating (Microsoft.TemplateEngine.TestHelper, Mocks, and
+       Authoring.TemplateVerifier) still transitively depend on xunit v2 and Verify.Xunit v2.
+       These exclusions can be removed once those packages are updated to target xunit v3. -->
+  <ItemGroup>
+    <PackageReference Include="xunit.extensibility.core" ExcludeAssets="compile;runtime" PrivateAssets="all" />
+    <PackageReference Include="xunit.extensibility.execution" ExcludeAssets="compile;runtime" PrivateAssets="all" />
+    <PackageReference Include="xunit.assert" ExcludeAssets="compile;runtime" PrivateAssets="all" />
+    <PackageReference Include="Verify.Xunit" ExcludeAssets="all" PrivateAssets="all" />
+  </ItemGroup>
 
 </Project>
