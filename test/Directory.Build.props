@@ -29,16 +29,4 @@
     <IncludeSymbols>false</IncludeSymbols>
   </PropertyGroup>
 
-  <!-- Exclude xUnit v2 compile/runtime assemblies that conflict with xUnit v3 types
-       (e.g. FactAttribute, TheoryAttribute exist in both xunit.extensibility.core and xunit.v3.core).
-       Upstream packages from dotnet/templating (Microsoft.TemplateEngine.TestHelper, Mocks, and
-       Authoring.TemplateVerifier) still transitively depend on xunit v2 and Verify.Xunit v2.
-       These exclusions can be removed once those packages are updated to target xunit v3. -->
-  <ItemGroup>
-    <PackageReference Include="xunit.extensibility.core" ExcludeAssets="compile;runtime" PrivateAssets="all" />
-    <PackageReference Include="xunit.extensibility.execution" ExcludeAssets="compile;runtime" PrivateAssets="all" />
-    <PackageReference Include="xunit.assert" ExcludeAssets="compile;runtime" PrivateAssets="all" />
-    <PackageReference Include="Verify.Xunit" ExcludeAssets="all" PrivateAssets="all" />
-  </ItemGroup>
-
 </Project>

@@ -15,6 +15,12 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" VersionOverride="$(MicrosoftCodeAnalysisCSharpPackageVersion)" />
   </ItemGroup>
 
+  <!-- xunit.assert v2 comes transitively from Test.Utilities; exclude compile assets to avoid
+       type conflicts with xunit.v3.assert from Microsoft.NET.TestFramework. -->
+  <ItemGroup>
+    <PackageReference Include="xunit.assert" IncludeAssets="runtime" PrivateAssets="all" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Test.Utilities\Test.Utilities.csproj" />
     <ProjectReference Include="..\..\src\Microsoft.CodeAnalysis.NetAnalyzers\Microsoft.CodeAnalysis.NetAnalyzers.csproj" />

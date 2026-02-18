@@ -17,6 +17,13 @@
     <PackageReference Include="Verify.DiffPlex" />
     <PackageReference Include="Microsoft.TemplateEngine.TestHelper" />
     <PackageReference Include="Microsoft.TemplateEngine.Authoring.TemplateVerifier" />
+    <!-- TemplateEngine/TemplateVerifier packages transitively depend on xunit v2 and Verify.Xunit v2.
+         Exclude compile assets to avoid type conflicts with xunit v3, but keep runtime assets so
+         TemplateVerifier can load them. Can be removed once upstream dotnet/templating targets xunit v3. -->
+    <PackageReference Include="xunit.extensibility.core" IncludeAssets="runtime" PrivateAssets="all" />
+    <PackageReference Include="xunit.extensibility.execution" IncludeAssets="runtime" PrivateAssets="all" />
+    <PackageReference Include="xunit.assert" IncludeAssets="runtime" PrivateAssets="all" />
+    <PackageReference Include="Verify.Xunit" IncludeAssets="runtime" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

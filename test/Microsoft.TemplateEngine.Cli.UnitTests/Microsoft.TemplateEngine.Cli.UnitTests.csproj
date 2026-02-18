@@ -20,6 +20,12 @@
     <PackageReference Include="Microsoft.TemplateEngine.Mocks" />
     <PackageReference Include="Microsoft.TemplateEngine.TestHelper" />
     <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects" />
+    <!-- TemplateEngine packages transitively depend on xunit v2; exclude compile assets to avoid
+         type conflicts with xunit v3 (e.g. duplicate FactAttribute). Can be removed once the
+         upstream dotnet/templating packages target xunit v3. -->
+    <PackageReference Include="xunit.extensibility.core" IncludeAssets="runtime" PrivateAssets="all" />
+    <PackageReference Include="xunit.extensibility.execution" IncludeAssets="runtime" PrivateAssets="all" />
+    <PackageReference Include="xunit.assert" IncludeAssets="runtime" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
