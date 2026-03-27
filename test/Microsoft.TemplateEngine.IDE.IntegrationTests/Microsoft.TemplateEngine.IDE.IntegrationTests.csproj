@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AwesomeAssertions" />
-    <PackageReference Include="Verify.XUnit" />
+    <PackageReference Include="Verify.Xunit" />
     <PackageReference Include="Verify.DiffPlex" />
   </ItemGroup>
 
