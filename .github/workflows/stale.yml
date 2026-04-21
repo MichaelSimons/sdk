@@ -85,7 +85,7 @@ jobs:
           stale-issue-label: 'stale'
           close-issue-message: 'Closed automatically — this Known Build Error has had 0 hits for over a month.'
           days-before-issue-stale: -1 # Don't auto-stale; step 1 handles that
-          days-before-issue-close: 7
+          days-before-issue-close: 0
           days-before-pr-stale: -1
           days-before-pr-close: -1
           operations-per-run: 100
