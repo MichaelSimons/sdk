@@ -31,7 +31,9 @@ namespace Microsoft.CodeAnalysis.Tools.Tests.Utilities
                 ? workspaceFilePath
                 : Path.Combine(TestProjectsPathHelper.GetProjectsDirectory(), workspaceFilePath);
 
-            var processInfo = ProcessRunner.CreateProcess("dotnet", $"build \"{workspacePath}\"", captureOutput: true, displayWindow: false);
+            // Use -m:1 to avoid file locking race conditions where GenerateDepsFile
+            // and ProjectReference evaluation can conflict during parallel solution builds.
+            var processInfo = ProcessRunner.CreateProcess("dotnet", $"build \"{workspacePath}\" -m:1", captureOutput: true, displayWindow: false);
             var restoreResult = await processInfo.Result;
 
             output.WriteLine(string.Join(Environment.NewLine, restoreResult.OutputLines));

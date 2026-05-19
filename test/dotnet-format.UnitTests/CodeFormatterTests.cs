@@ -141,6 +141,13 @@ namespace Microsoft.CodeAnalysis.Tools.Tests
         [MSBuildFact]
         public async Task FilesFormattedInUnformattedProjectFolder()
         {
+            // The folder mode test scans the filesystem for .cs files. The .editorconfig
+            // includes obj/**/*.cs, so we need obj/ to exist with generated source files.
+            // A build (not just restore) is required because AssemblyInfo.cs and
+            // AssemblyAttributes.cs are only generated during the Build target.
+            var exitCode = await Utilities.DotNetHelper.PerformBuildAsync(s_unformattedProjectFilePath, _output);
+            Assert.Equal(0, exitCode);
+
             // Since the code files are beneath the project folder, files are found and formatted.
             await TestFormatWorkspaceAsync(
                 Path.GetDirectoryName(s_unformattedProjectFilePath),
@@ -166,7 +173,7 @@ namespace Microsoft.CodeAnalysis.Tools.Tests
                 expectedFileCount: 0);
         }
 
-        [MSBuildFact]
+        [MSBuildFact(AlwaysSkip = "https://github.com/dotnet/sdk/issues/54249")]
         public async Task FSharpProjectsDoNotCreateException()
         {
             var log = await TestFormatWorkspaceAsync(

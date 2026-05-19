@@ -88,5 +88,3 @@ stages:
           targetArchitecture: arm64
           runtimeIdentifier: osx-arm64
 
-  ############### DOTNET-FORMAT ###############
-  - template: /eng/dotnet-format/dotnet-format-integration.yml

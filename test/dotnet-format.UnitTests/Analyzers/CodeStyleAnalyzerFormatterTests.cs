@@ -16,7 +16,7 @@ namespace Microsoft.CodeAnalysis.Tools.Tests.Analyzers
             TestOutputHelper = output;
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/dotnet/sdk/issues/54249")]
         public async Task TestUseVarCodeStyle_AppliesWhenNotUsingVar()
         {
             var testCode = @"

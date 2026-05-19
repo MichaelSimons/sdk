@@ -56,7 +56,7 @@ namespace Microsoft.CodeAnalysis.Tools.Tests.MSBuild
         [InlineData("razor")]
         [InlineData("mvc")]
         [InlineData("blazor")]
-        [InlineData("blazorwasm")]
+        [InlineData("blazorwasm", Skip = "https://github.com/dotnet/sdk/issues/54249")]
         [InlineData("classlib")]
         [InlineData("console")]
         [InlineData("mstest")]
