@@ -2,9 +2,9 @@ using System;
 
 namespace for_code_formatter
 {
-    class Program
+    class IgnoredClass
     {
-        static void Main(string[] args)
+        static void Run(string[] args)
         {
             Console.WriteLine("Hello World!");
         }
