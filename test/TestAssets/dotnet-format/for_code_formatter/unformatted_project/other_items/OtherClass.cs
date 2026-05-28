@@ -2,7 +2,7 @@
 
 namespace for_code_formatter
 {
-    class Program
+    class OtherClass
     {
         static void Main(string[] args)
         {
