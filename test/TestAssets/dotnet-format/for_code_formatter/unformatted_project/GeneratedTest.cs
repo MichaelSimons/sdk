@@ -9,7 +9,7 @@ namespace for_code_formatter
 {
     class GeneratedTest
     {
-        static void Main(string[] args)
+        static void Run(string[] args)
         {
             Console.WriteLine("Hello World!");
         }
